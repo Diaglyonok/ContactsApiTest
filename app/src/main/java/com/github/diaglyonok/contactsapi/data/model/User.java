@@ -1,7 +1,4 @@
-package com.github.diaglyonok.contactsapi;
-
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+package com.github.diaglyonok.contactsapi.data.model;
 
 /**
  * Created by diaglyonok on 02.03.18.
@@ -14,15 +11,12 @@ public class User {
     private String surName;
     private String title;
 
-    User(String sex, String urlImage, String title, String name, String surName){
+    public User(String sex, String urlImage, String title, String name, String surName){
         this.sex = sex;
         this.urlImage = urlImage;
         this.title = title;
         this.name = name;
         this.surName = surName;
-    }
-
-    public void createAvatar(){
     }
 
     public String getName() {

@@ -1,4 +1,4 @@
-package com.github.diaglyonok.contactsapi;
+package com.github.diaglyonok.contactsapi.helpers;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -8,15 +8,11 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.support.v4.content.ContextCompat;
-
 import com.squareup.picasso.Transformation;
-
-import java.util.List;
 
 /**
  * Created by diaglyonok on 03.03.18.
  */
-
 
 public class MaskTransformation implements Transformation {
 
@@ -28,12 +24,7 @@ public class MaskTransformation implements Transformation {
         mMaskingPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     }
 
-    /**
-     * @param maskId If you change the mask file, please also rename the mask file, or Glide will get
-     * the cache with the old mask. Because getId() return the same values if using the
-     * same make file name. If you have a good idea please tell us, thanks.
-     */
-    public MaskTransformation(Context context, int maskId) {
+    MaskTransformation(Context context, int maskId) {
         mContext = context.getApplicationContext();
         mMaskId = maskId;
     }
@@ -61,7 +52,7 @@ public class MaskTransformation implements Transformation {
                 + ")";
     }
 
-    public Drawable getMaskDrawable(Context context, int maskId) {
+    private Drawable getMaskDrawable(Context context, int maskId) {
         Drawable drawable = ContextCompat.getDrawable(context, maskId);
 
         if (drawable == null) {

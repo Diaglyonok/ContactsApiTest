@@ -1,12 +1,13 @@
-package com.github.diaglyonok.contactsapi;
+package com.github.diaglyonok.contactsapi.helpers;
 
 import android.os.AsyncTask;
 import android.util.Log;
-
+import com.github.diaglyonok.contactsapi.controllers.MainController;
+import com.github.diaglyonok.contactsapi.controllers.interfaces.AsyncResponse;
+import com.github.diaglyonok.contactsapi.data.model.User;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -21,9 +22,8 @@ import java.util.ArrayList;
 
 public class DownloadFilesTask extends AsyncTask<Integer, Void, JSONObject> {
 
-    public static String num = "40";
-    public static final String API_URL = "https://randomuser.me/api/?results=";
-
+    private static final String num = "40";
+    private static final String API_URL = "https://randomuser.me/api/?results=";
 
     public AsyncResponse delegate;
 
@@ -65,7 +65,7 @@ public class DownloadFilesTask extends AsyncTask<Integer, Void, JSONObject> {
             e.printStackTrace();
         }
 
-        delegate.processFinish(allUsers);
+        delegate.processFinished(allUsers);
     }
 
 
@@ -89,7 +89,7 @@ public class DownloadFilesTask extends AsyncTask<Integer, Void, JSONObject> {
         br.close();
 
         String jsonString = sb.toString();
-        Log.i(MainActivity.LOG_TAG, "JSON: " + jsonString);
+        Log.i(MainController.LOG_TAG, "JSON: " + jsonString);
 
         return new JSONObject(jsonString);
     }
