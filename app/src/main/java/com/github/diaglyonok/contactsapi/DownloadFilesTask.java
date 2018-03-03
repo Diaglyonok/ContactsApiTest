@@ -1,6 +1,7 @@
 package com.github.diaglyonok.contactsapi;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -88,7 +89,7 @@ public class DownloadFilesTask extends AsyncTask<Integer, Void, JSONObject> {
         br.close();
 
         String jsonString = sb.toString();
-        System.out.println("JSON: " + jsonString);
+        Log.i(MainActivity.LOG_TAG, "JSON: " + jsonString);
 
         return new JSONObject(jsonString);
     }

@@ -1,5 +1,8 @@
 package com.github.diaglyonok.contactsapi;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+
 /**
  * Created by diaglyonok on 02.03.18.
  */
@@ -17,6 +20,9 @@ public class User {
         this.title = title;
         this.name = name;
         this.surName = surName;
+    }
+
+    public void createAvatar(){
     }
 
     public String getName() {

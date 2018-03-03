@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">ContactsApi</string>
+    <string name="app_name">Contacts</string>
+    <string name="example_name_str">Name</string>
+    <string name="example_surname_str">Surname</string>
+    <string name="example_number_str">1.</string>
+    <string name="refresh_str">refresh</string>
 </resources>
