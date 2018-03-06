@@ -2,15 +2,20 @@ package com.github.diaglyonok.contactsapi.data.model;
 
 /**
  * Created by diaglyonok on 02.03.18.
+ * https://github.com/Diaglyonok
+ * diaglyonok@yandex.ru
  */
 
+//Data model class
 public class User {
-    private String sex;
-    private String urlImage;
-    private String name;
-    private String surName;
-    private String title;
+    //Parameters
+    private String sex;         // Gender
+    private String urlImage;    // URL of Image
+    private String name;        // Name
+    private String surName;     // Surname
+    private String title;       // Title of name
 
+    //Constructor
     public User(String sex, String urlImage, String title, String name, String surName){
         this.sex = sex;
         this.urlImage = urlImage;
@@ -19,6 +24,7 @@ public class User {
         this.surName = surName;
     }
 
+    //Getters and setters
     public String getName() {
         return name;
     }

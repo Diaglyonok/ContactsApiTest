@@ -1,7 +1,6 @@
-package com.github.diaglyonok.contactsapi.helpers;
+package com.github.diaglyonok.contactsapi.ui.helpers;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,39 +17,45 @@ import java.util.Locale;
 
 /**
  * Created by diaglyonok on 02.03.18.
+ * https://github.com/Diaglyonok
+ * diaglyonok@yandex.ru
  */
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
+
+    //View adapter
     private ArrayList<User> users;
     private Context context;
 
+    //View holder (cardView)
     static class ViewHolder extends RecyclerView.ViewHolder {
         private ImageView ivAvatar;
         private TextView tvName;
         private TextView tvNum;
-        private CardView cv;
 
-
-
+        //ViewHolder constructor
         ViewHolder(View v) {
             super(v);
             ivAvatar = v.findViewById(R.id.iv_avatar);
             tvName = v.findViewById(R.id.tv_name_surname);
             tvNum = v.findViewById(R.id.tv_num);
-            cv = v.findViewById(R.id.card);
 
         }
     }
 
+    /*RecyclerViewAdapter constructor
+        Initialising users
+    //*/
     public RecyclerViewAdapter(ArrayList<User> users) {
         this.users = users;
     }
 
+    //OnCreate
     @Override
     public RecyclerViewAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
         context = parent.getContext();
-
+        //Setting view holder
         View v = LayoutInflater.from(context)
                 .inflate(R.layout.list_item, parent, false);
 
@@ -65,11 +70,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         String surname =  u.getSurName().substring(0, 1).toUpperCase() + u.getSurName().substring(1);
         holder.tvName.setText(String.format("%s, %s %s", u.getTitle(), name, surname));
         holder.tvNum.setText(String.format(Locale.UK,"%d.", (position + 1)));
+        //Using Picasso lib
         Picasso.with(context)
-                .load(u.getUrlImage())
-                .transform(sex.equals("male")? new MaskTransformation(context, R.drawable.star) : new MaskTransformation(context, R.drawable.heart))//*/
-                .placeholder(R.drawable.person_icon)
-                .into(holder.ivAvatar);
+                .load(u.getUrlImage()) //Loading image from url
+                .transform(
+                        sex.equals("male")?                                 // if sex male
+                        new MaskTransformation(context, R.drawable.star) :  // set mask star
+                        new MaskTransformation(context, R.drawable.heart))  // else set mask heart
+                .placeholder(R.drawable.person_icon)    // default icon
+                .into(holder.ivAvatar);  // set mask to imageView
     }
 
     @Override

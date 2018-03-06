@@ -1,4 +1,4 @@
-package com.github.diaglyonok.contactsapi.helpers;
+package com.github.diaglyonok.contactsapi.ui.helpers;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -12,8 +12,11 @@ import com.squareup.picasso.Transformation;
 
 /**
  * Created by diaglyonok on 03.03.18.
+ * https://github.com/Diaglyonok
+ * diaglyonok@yandex.ru
  */
 
+//Class for Cropping image as Star or as Heart
 public class MaskTransformation implements Transformation {
 
     private static Paint mMaskingPaint = new Paint();
@@ -24,19 +27,22 @@ public class MaskTransformation implements Transformation {
         mMaskingPaint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
     }
 
+    //Constructor
     MaskTransformation(Context context, int maskId) {
-        mContext = context.getApplicationContext();
-        mMaskId = maskId;
+        mContext = context.getApplicationContext(); // Init context
+        mMaskId = maskId;   // R.drawable.heart or R.drawable.star
     }
 
+    //Called from picasso objects, source is image that need to be cropped
     @Override public Bitmap transform(Bitmap source) {
-        int width = source.getWidth();
-        int height = source.getHeight();
+        int width = source.getWidth();      //Width of source
+        int height = source.getHeight();    //Height of source
 
         Bitmap result = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
 
-        Drawable mask = getMaskDrawable(mContext, mMaskId);
+        Drawable mask = getMaskDrawable(mContext, mMaskId); //Init mask from resources
 
+        //Using mask
         Canvas canvas = new Canvas(result);
         mask.setBounds(0, 0, width, height);
         mask.draw(canvas);
@@ -44,6 +50,7 @@ public class MaskTransformation implements Transformation {
 
         source.recycle();
 
+        //Return bitmap of cropped image
         return result;
     }
 
@@ -52,6 +59,7 @@ public class MaskTransformation implements Transformation {
                 + ")";
     }
 
+    //Method returned mask as Drawable
     private Drawable getMaskDrawable(Context context, int maskId) {
         Drawable drawable = ContextCompat.getDrawable(context, maskId);
 
